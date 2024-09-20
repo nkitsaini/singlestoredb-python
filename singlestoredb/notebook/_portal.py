@@ -305,6 +305,19 @@ class Portal(object):
         )
 
     @property
+    def app_listen_port(self) -> Optional[int]:
+        """Port to use for running SingleStore App."""
+        port = os.environ.get('SINGLESTOREDB_APP_LISTEN_PORT')
+        if port is not None:
+            return int(port)
+        return None
+
+    @property
+    def app_url(self) -> Optional[str]:
+        """SingleStore App URL."""
+        return os.environ.get('SINGLESTOREDB_APP_URL')
+
+    @property
     def version(self) -> Optional[str]:
         """Version."""
         return self._connection_info.get('version')
